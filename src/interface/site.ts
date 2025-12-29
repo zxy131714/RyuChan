@@ -62,6 +62,11 @@ export interface BlogConfig {
   pageSize: number;
 }
 
+export interface TmdbConfig {
+  apiKey: string;
+  listId: string;
+}
+
 export interface SiteConfig {
   tab: string;
   title: string;
@@ -75,6 +80,7 @@ export interface SiteConfig {
   };
   date_format: string;
   blog: BlogConfig;
+  tmdb?: TmdbConfig;
   menu: MenuItem[];
   banner?: {
     images: string[];

@@ -1,100 +1,106 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
-import MainCard from "@/components/MainCard.astro";
 import FriendCard from "@/components/mdx/FriendCard.astro";
-import Card from "@/components/temple/Card.astro";
-import CardGroup from "@/components/temple/CardGroup.astro";
 import Showcase from "@/components/mdx/Showcase.astro";
+
+const friends = [
+  {
+    name: "April",
+    avatar: "https://picbed.xiaozhangya.xin/picbed/20250726061546364.png",
+    description: "人间四月芳菲尽！",
+    url: "https://www.zhaocloud.work"
+  },
+  {
+    name: "zzz",
+    avatar: "https://zzz2929.github.io/PicGo/%E5%A4%B4%E5%83%8F.jpg",
+    description: "冠以名则六欲泛生，止于此则七情方休。",
+    url: "https://blog.904002.xyz"
+  },
+  {
+    name: "安知鱼",
+    avatar: "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",
+    description: "生活明朗，万物可爱",
+    url: "https://blog.anheyu.com/"
+  },
+  {
+    name: "YC",
+    avatar: "https://picbed.xiaozhangya.xin/picbed/20250726181930154.png",
+    description: "Creazing a better world with code.",
+    url: "https://github.com/ycyang004"
+  },
+  {
+    name: "kuncode",
+    avatar: "https://www.kuncodeascension.fun/img/logo.jpg",
+    description: "代码飞升",
+    url: "https://www.kuncodeascension.fun"
+  }
+];
 
 const sites = [{ name: "Ryuchan Demo", url: "https://demo.131714.xyz/" }];
 ---
 
 <BaseLayout title="Friends">
-  <CardGroup cols="1">
-    <MainCard
-      infoIcon="lucide:link"
-    >
-      <div class="space-y-10">
-        <!-- Friends Section -->
-        <section>
-          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Icon name="lucide:users" class="w-6 h-6 text-primary" />
-            <span>Friends</span>
-          </h2>
+  <!-- Friends Section -->
+  <div class="mb-10 animate-fade-in-up">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3">
+      <Icon name="lucide:users" class="text-primary" />
+      <span>Friends</span>
+    </h1>
+    <p class="text-base-content/70 text-lg mb-6">
+      记录那些珍贵的友谊，分享彼此的故事。
+    </p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {friends.map((friend) => (
+        <FriendCard
+          name={friend.name}
+          avatar={friend.avatar}
+          description={friend.description}
+          url={friend.url}
+        />
+      ))}
+    </div>
+  </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <FriendCard
-              name="April"
-              avatar="https://picbed.xiaozhangya.xin/picbed/20250726061546364.png"
-              description="人间四月芳菲尽！"
-              url="https://www.zhaocloud.work"
-              type="friend"
-            />
-            <FriendCard
-              name="zzz"
-              avatar="https://zzz2929.github.io/PicGo/%E5%A4%B4%E5%83%8F.jpg"
-              description="冠以名则六欲泛生，止于此则七情方休。"
-              url="https://blog.904002.xyz"
-              type="friend"
-            />
-            <FriendCard
-              name="安知鱼"
-              avatar="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"
-              description="生活明朗，万物可爱"
-              url="https://blog.anheyu.com/"
-              type="friend"
-            />
-            <FriendCard
-              name="YC"
-              avatar="https://picbed.xiaozhangya.xin/picbed/20250726181930154.png"
-              description="Creazing a better world with code."
-              url="https://github.com/ycyang004"
-              type="friend"
-            />
-            <FriendCard
-              name="kuncode"
-              avatar="https://www.kuncodeascension.fun/img/logo.jpg"
-              description="代码飞升"
-              url="https://www.kuncodeascension.fun"
-              type="friend"
-            />
-          </div>
-          <div class="divider my-8">
-            <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
-          </div>
-        </section>
-      </div>
-    </MainCard>
-    <Card>
-      <div class="p-4 sm:p-6">
-        <div class="space-y-10">
-          <section>
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2">
-              <h2 class="text-2xl font-bold flex items-center gap-2">
-                <Icon name="lucide:layout-template" class="w-6 h-6 text-primary" />
-                <span>Sites Using Ryuchan</span>
-              </h2>
-              <a
-                href="https://github.com/kobaridev/Ryuchan/edit/main/src/pages/friend.astro"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-sm btn-outline btn-primary gap-2"
-              >
-                <Icon name="lucide:plus-circle" class="w-4 h-4" />
-                Add Your Site
-              </a>
-            </div>
-            <p class="text-base-content/70 mb-6">
-              Here is a list of sites built with Ryuchan. Want to get your site listed? Click the "Add Your Site" button
-              in the top right to edit this page by submitting a Pull Request!
-            </p>
-            <div class="flex flex-wrap items-center gap-3">
-              {sites.map((site) => <Showcase name={site.name} url={site.url} />)}
-            </div>
-          </section>
+  <div class="divider my-12 animate-fade-in-up" style="animation-delay: 0.1s;">
+    <Icon name="lucide:heart" class="w-8 h-8 text-primary/50" />
+  </div>
+
+  <!-- Sites Using Ryuchan Section -->
+  <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+    <div class="bg-base-100 rounded-2xl p-6 md:p-8 shadow-lg border border-base-200">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <div>
+          <h2 class="text-2xl font-bold flex items-center gap-2 mb-2">
+            <Icon name="lucide:layout-template" class="w-6 h-6 text-secondary" />
+            <span>Sites Using Ryuchan</span>
+          </h2>
+          <p class="text-base-content/70">
+            这里展示了使用 Ryuchan 主题构建的网站。
+          </p>
         </div>
+        <a
+          href="https://github.com/kobaridev/Ryuchan/edit/main/src/pages/friend.astro"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-sm gap-2"
+        >
+          <Icon name="lucide:plus-circle" class="w-4 h-4" />
+          Add Your Site
+        </a>
       </div>
-    </Card>
-  </CardGroup>
+
+      <div class="flex flex-wrap gap-4">
+        {sites.map((site) => <Showcase name={site.name} url={site.url} />)}
+      </div>
+      
+      <div class="mt-6 p-4 bg-base-200/50 rounded-xl text-sm text-base-content/60 flex gap-2 items-start">
+        <Icon name="lucide:info" class="w-5 h-5 flex-shrink-0 mt-0.5" />
+        <p>
+          想要将你的网站添加到这里吗？点击右上角的 "Add Your Site" 按钮，提交一个 Pull Request 来编辑此页面！
+        </p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

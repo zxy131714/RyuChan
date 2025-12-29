@@ -20,17 +20,17 @@ const pageLinks = generatePageLinks(totalPages);
 
 <BaseLayout title="Blog">
   <!-- Blog Navigation Cards -->
-  <CardGroup cols="2">
+  <CardGroup cols="2" class="grid-cols-2">
     <!-- Archives Card -->
     <a href="/blog/archives" class="card bg-base-100 shadow-lg">
-      <div class="card-body p-4">
-        <div class="flex items-center gap-3">
-          <div class="rounded-full bg-accent/10 p-3">
-            <Icon name="lucide:archive" class="w-6 h-6 text-accent" />
+      <div class="card-body p-3 sm:p-4">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="rounded-full bg-accent/10 p-2 sm:p-3 flex-shrink-0">
+            <Icon name="lucide:archive" class="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
           </div>
-          <div>
-            <h2 class="card-title text-lg">{t("label.archivePage")}</h2>
-            <p class="text-sm opacity-75">{t("label.archivesPageDescription")}</p>
+          <div class="min-w-0 flex-1 pr-1">
+            <h2 class="card-title text-sm sm:text-lg whitespace-nowrap">{t("label.archivePage")}</h2>
+            <p class="text-[10px] sm:text-sm opacity-75 truncate">{t("label.archivesPageDescription")}</p>
           </div>
         </div>
       </div>
@@ -38,14 +38,14 @@ const pageLinks = generatePageLinks(totalPages);
 
     <!-- Categories Card -->
     <a href="/blog/categories" class="card bg-base-100 shadow-lg">
-      <div class="card-body p-4">
-        <div class="flex items-center gap-3">
-          <div class="rounded-full bg-primary/10 p-3">
-            <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
+      <div class="card-body p-3 sm:p-4">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="rounded-full bg-primary/10 p-2 sm:p-3 flex-shrink-0">
+            <Icon name="lucide:folder" class="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </div>
-          <div>
-            <h2 class="card-title text-lg">{t("label.categoryPage")}</h2>
-            <p class="text-sm opacity-75">{t("label.categoriesPageDescription")}</p>
+          <div class="min-w-0 flex-1 pr-1">
+            <h2 class="card-title text-sm sm:text-lg whitespace-nowrap">{t("label.categoryPage")}</h2>
+            <p class="text-[10px] sm:text-sm opacity-75 truncate">{t("label.categoriesPageDescription")}</p>
           </div>
         </div>
       </div>
@@ -53,14 +53,14 @@ const pageLinks = generatePageLinks(totalPages);
 
     <!-- Tags Card -->
     <a href="/blog/tags" class="card bg-base-100 shadow-lg">
-      <div class="card-body p-4">
-        <div class="flex items-center gap-3">
-          <div class="rounded-full bg-secondary/10 p-3">
-            <Icon name="lucide:tag" class="w-6 h-6 text-secondary" />
+      <div class="card-body p-3 sm:p-4">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="rounded-full bg-secondary/10 p-2 sm:p-3 flex-shrink-0">
+            <Icon name="lucide:tag" class="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
           </div>
-          <div>
-            <h2 class="card-title text-lg">{t("label.tagPage")}</h2>
-            <p class="text-sm opacity-75">{t("label.tagsPageDescription")}</p>
+          <div class="min-w-0 flex-1 pr-1">
+            <h2 class="card-title text-sm sm:text-lg whitespace-nowrap">{t("label.tagPage")}</h2>
+            <p class="text-[10px] sm:text-sm opacity-75 truncate">{t("label.tagsPageDescription")}</p>
           </div>
         </div>
       </div>
@@ -68,14 +68,14 @@ const pageLinks = generatePageLinks(totalPages);
 
     <!-- Search Card -->
     <a href="/blog/search" class="card bg-base-100 shadow-lg">
-      <div class="card-body p-4">
-        <div class="flex items-center gap-3">
-          <div class="rounded-full bg-info/10 p-3">
-            <Icon name="lucide:search" class="w-6 h-6 text-info" />
+      <div class="card-body p-3 sm:p-4">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="rounded-full bg-info/10 p-2 sm:p-3 flex-shrink-0">
+            <Icon name="lucide:search" class="w-5 h-5 sm:w-6 sm:h-6 text-info" />
           </div>
-          <div>
-            <h2 class="card-title text-lg">{t("label.searchPage")}</h2>
-            <p class="text-sm opacity-75">{t("label.searchPageDescription")}</p>
+          <div class="min-w-0 flex-1 pr-1">
+            <h2 class="card-title text-sm sm:text-lg whitespace-nowrap">{t("label.searchPage")}</h2>
+            <p class="text-[10px] sm:text-sm opacity-75 truncate">{t("label.searchPageDescription")}</p>
           </div>
         </div>
       </div>

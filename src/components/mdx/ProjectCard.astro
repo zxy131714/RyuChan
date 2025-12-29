@@ -1,23 +1,23 @@
 ---
-export interface FriendCardProps {
+export interface ProjectCardProps {
   name: string;
   avatar: string;
   description: string;
   url: string;
 }
 
-const { name, avatar, description, url } = Astro.props as FriendCardProps;
+const { name, avatar, description, url } = Astro.props as ProjectCardProps;
 
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
-// Friend style config
+// Project style config
 const config = {
-  bgClass: "bg-gradient-to-br from-primary/10 to-base-100",
-  iconName: "lucide:users",
-  borderClass: "border-primary/20 hover:border-primary/50",
-  badgeClass: "badge-primary badge-outline",
-  badgeText: "Friend"
+  bgClass: "bg-gradient-to-br from-info/10 to-base-100",
+  iconName: "lucide:folder-git-2",
+  borderClass: "border-info/20 hover:border-info/50",
+  badgeClass: "badge-info badge-outline",
+  badgeText: "Project"
 };
 
 const { bgClass, iconName, borderClass, badgeClass, badgeText } = config;
@@ -62,7 +62,7 @@ const { bgClass, iconName, borderClass, badgeClass, badgeText } = config;
 
     <div class="flex items-center text-xs text-base-content/50 font-medium group-hover:text-primary/70 transition-colors mt-auto pt-3 border-t border-base-200/50 border-dashed">
       <Icon name={iconName} class="w-3.5 h-3.5 mr-1.5" />
-      <span>Visit Website</span>
+      <span>View Project</span>
     </div>
   </div>
 </a>

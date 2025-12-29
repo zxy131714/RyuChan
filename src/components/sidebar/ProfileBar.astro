@@ -119,12 +119,14 @@ const getCategoryDisplayName = (category: string): string => {
     </div>  
       
     <!-- 全站访问量统计 -->  
-    <div class="text-center text-sm text-base-content/50 mt-3 pt-3 border-t border-base-content/20">  
-      <div class="flex items-center justify-center gap-1">  
-        <Icon name="material-symbols:visibility-outline" class="text-base" />  
-        <span id="site-stats">加载中...</span>  
+    {umamiConfig.enable && (
+      <div class="text-center text-sm text-base-content/50 mt-3 pt-3 border-t border-base-content/20">  
+        <div class="flex items-center justify-center gap-1">  
+          <Icon name="material-symbols:visibility-outline" class="text-base" />  
+          <span id="site-stats">加载中...</span>  
+        </div>  
       </div>  
-    </div>  
+    )}
   </div>  
 </div>  
   
@@ -341,15 +343,17 @@ function initTagsToggle() {
 
   // 初始化函数  
   function init() {  
-    // 如果已有缓存数据，立即显示  
-    const cachedStats = sessionStorage.getItem('siteStatsData');  
-    if (cachedStats) {  
-      statsData = JSON.parse(cachedStats);  
-      updateStatsDisplay();  
-    } else {  
-      // 否则加载新数据  
-      loadSiteStats();  
-    }  
+    if (umamiConfig.enable) {
+      // 如果已有缓存数据，立即显示  
+      const cachedStats = sessionStorage.getItem('siteStatsData');  
+      if (cachedStats) {  
+        statsData = JSON.parse(cachedStats);  
+        updateStatsDisplay();  
+      } else {  
+        // 否则加载新数据  
+        loadSiteStats();  
+      }  
+    }
       
     // 初始化分类切换功能  
     initCategoriesToggle(); 

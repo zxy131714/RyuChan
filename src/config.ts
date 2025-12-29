@@ -34,6 +34,9 @@ export const TYPEWRITER_TEXTS = config.site.pages?.home?.typewriterTexts || [];
 export const BLOG_CONFIG = config.site.blog;
 export const BLOG_PAGE_SIZE = config.site.blog.pageSize;
 
+// TMDB 配置
+export const TMDB_CONFIG = config.site.tmdb;
+
 // 代码块的主题
 export const CODE_THEME = config.site.theme.code;
 

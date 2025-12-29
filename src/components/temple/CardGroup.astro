@@ -26,28 +26,23 @@ const {
     }
   }
 
-  /* Mobile layout shows stacked cards with dividers */
+  /* Mobile layout shows stacked cards with spacing */
   @media (max-width: 767px) {
     .card-group {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.75rem; /* space between cards on mobile */
     }
 
-    /* Add dividers between cards except the last one */
-    :global(.card-group > :not(:last-child)) {
-      border-bottom: 1px dashed oklch(var(--bc) / 0.2);
-      margin-bottom: 0;
-      border-bottom-left-radius: 0 !important;
-      border-bottom-right-radius: 0 !important;
+    /* Support for 2 columns on mobile if specified */
+    .card-group.grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
     }
 
-    :global(.card-group > :not(:first-child)) {
-      border-top-left-radius: 0 !important;
-      border-top-right-radius: 0 !important;
-    }
-
+    /* Preserve individual card rounding and spacing */
     :global(.card-group > *) {
-      margin: 0;
+      margin: 0; /* reset margins inside group */
     }
   }
 </style>
