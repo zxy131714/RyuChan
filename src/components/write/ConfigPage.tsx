@@ -37,6 +37,8 @@ export function ConfigPage() {
     const [uploadingImage, setUploadingImage] = useState(false)
     const [uploadTarget, setUploadTarget] = useState<string>('')
     const imageInputRef = useRef<HTMLInputElement>(null)
+    // 缓存待上传图片 { [targetKey]: { file, previewUrl } }
+    const [pendingImages, setPendingImages] = useState<Record<string, { file: File, previewUrl: string }>>({})
 
 	useEffect(() => {
 		loadConfig()
@@ -76,10 +78,16 @@ export function ConfigPage() {
                 try {
                     setParsedConfig(yaml.load(content))
                 } catch (e) {
-                    setMode('code')
+    const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
                 }
 			} else {
-				toast.error('未找到配置文件')
+        const previewUrl = URL.createObjectURL(file)
+        setPendingImages(prev => ({ ...prev, [uploadTarget]: { file, previewUrl } }))
+        // 预览时直接显示本地图片
+        updateConfigValue(uploadTarget, previewUrl)
+        setUploadTarget('')
+        if (imageInputRef.current) imageInputRef.current.value = ''
+        toast.info('图片已缓存，保存配置时会统一上传')
 			}
 		} catch (error: any) {
 			toast.error('加载配置失败: ' + error.message)
@@ -92,6 +100,35 @@ export function ConfigPage() {
         if (!parsedConfig) return
         const newConfig = JSON.parse(JSON.stringify(parsedConfig))
         const parts = path.split('.')
+            for (const [target, { file }] of Object.entries(pendingImages)) {
+                toast.info(`正在上传图片: ${target}`)
+                const base64 = await fileToBase64NoPrefix(file)
+                const ext = file.name.split('.').pop() || 'png'
+                const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
+                const path = `public/images/uploads/${filename}`
+                await putFile(
+                    token,
+                    GITHUB_CONFIG.OWNER,
+                    GITHUB_CONFIG.REPO,
+                    path,
+                    base64,
+                    `upload: ${filename}`,
+                    GITHUB_CONFIG.BRANCH
+                )
+                const publicPath = `/images/uploads/${filename}`
+                // 更新 configToUpdate
+                if (configToUpdate) {
+                    const parts = target.split('.')
+                    let current = configToUpdate
+                    for (let i = 0; i < parts.length - 1; i++) {
+                        if (!current[parts[i]]) current[parts[i]] = {}
+                        current = current[parts[i]]
+                    }
+                    current[parts[parts.length - 1]] = publicPath
+                }
+            }
+            // 清空缓存
+            setPendingImages({})
         let current = newConfig
         for (let i = 0; i < parts.length - 1; i++) {
             if (!current[parts[i]]) current[parts[i]] = {}
